@@ -15,6 +15,7 @@ export class RedisController {
     await this.redisService.setValue(data.key, data.value);
     return { key: data.key, value: data.value };
   }
+  
   @Get('getvalue/:key')
   async getValue(
     @Param('key') key: string,
@@ -22,10 +23,10 @@ export class RedisController {
     @Query('value') value?: string 
   ) {
     const redisValue = await this.redisService.getValue(key); 
-    console.log('Redis Value:', redisValue); // Corrected debug log
+    console.log('Redis Value:', redisValue);
     return {
       key,           
-      redisValue,   // Fix: Ensure the property is named redisValue
+      redisValue,   
       queryParams: { name, value }, 
     };
   }
